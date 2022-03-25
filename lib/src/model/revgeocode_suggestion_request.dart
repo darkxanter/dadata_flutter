@@ -1,27 +1,27 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'revgeocode_suggestion_request.g.dart';
 
 /// Used to call reverse geocoding API.
-@JsonSerializable(explicitToJson: true, nullable: true)
+@JsonSerializable(explicitToJson: true)
 class RevgeocodeSuggestionRequest {
   @JsonKey(name: "lat", required: true)
-  double latitude;
+  double? latitude;
 
   @JsonKey(name: "lon", required: true)
-  double longitude;
+  double? longitude;
 
   @JsonKey(name: 'count')
-  int count = 10;
+  int? count = 10;
 
   @JsonKey(name: 'language')
-  String language = 'ru';
+  String? language = 'ru';
 
   int _radiusMeters = 100;
 
   @JsonKey(name: "radius_meters")
   int get radiusMeters => _radiusMeters;
 
-  @JsonKey(name: "radius_meters")
   set radiusMeters(int value) {
     if (value < 0) {
       _radiusMeters = 0;

@@ -7,11 +7,10 @@ part of 'address_suggestion_priority.dart';
 // **************************************************************************
 
 AddressSuggestionPriority _$AddressSuggestionPriorityFromJson(
-    Map<String, dynamic> json) {
-  return AddressSuggestionPriority(
-    json['kladr_id'] as String,
-  );
-}
+        Map<String, dynamic> json) =>
+    AddressSuggestionPriority(
+      json['kladr_id'] as String?,
+    );
 
 Map<String, dynamic> _$AddressSuggestionPriorityToJson(
         AddressSuggestionPriority instance) =>

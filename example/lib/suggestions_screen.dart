@@ -1,18 +1,19 @@
+import 'package:dadata/dadata.dart';
 import 'package:flutter/material.dart';
-import 'package:dadata_suggestions/dadata_suggestions.dart';
 import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class SuggestionsScreen extends StatefulWidget {
   final String token;
 
-  SuggestionsScreen({Key key, this.token}) : super(key: key);
+  SuggestionsScreen({Key? key, required this.token}) : super(key: key);
 
   @override
   _SuggestionsScreenState createState() => _SuggestionsScreenState();
 }
 
 class _SuggestionsScreenState extends State<SuggestionsScreen> {
-  DadataSuggestions _suggestions;
+  late final DadataSuggestions _suggestions;
+  final _textEditingController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +25,26 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
         children: [
           Padding(
             padding: EdgeInsets.all(24),
-            child: TypeAheadField(
+            child: TypeAheadField<AddressSuggestion>(
+              textFieldConfiguration: TextFieldConfiguration(
+                controller: _textEditingController,
+              ),
               debounceDuration: Duration(milliseconds: 600),
               suggestionsCallback: _startSuggesting,
               itemBuilder: (context, suggestion) {
-                final s = suggestion as AddressSuggestion;
                 return Container(
                   child: Padding(
                     padding: EdgeInsets.all(12),
-                    child: Text(s.unrestrictedValue),
+                    child: Text(suggestion.unrestrictedValue ?? ''),
                   ),
                 );
               },
-              onSuggestionSelected: (a) {},
+              onSuggestionSelected: (suggestion) {
+                final value = suggestion.value;
+                if (value != null) {
+                  _textEditingController.text = value;
+                }
+              },
             ),
           ),
         ],
@@ -83,13 +91,12 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
 
   @override
   void initState() {
-    _suggestions = DadataSuggestions(widget.token);
     super.initState();
+    _suggestions = DadataSuggestions(widget.token);
   }
 
   @override
   void dispose() {
-    _suggestions = null;
     super.dispose();
   }
 }

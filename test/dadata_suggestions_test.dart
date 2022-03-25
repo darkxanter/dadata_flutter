@@ -1,11 +1,11 @@
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:dadata_suggestions/dadata_suggestions.dart';
+import 'package:dadata/dadata.dart';
 
 void main() {
   test('Nothing', () {
     DadataSuggestions('');
-    final nothing = null;
+    final dynamic nothing = null;
     expect(nothing, nothing);
   });
 }

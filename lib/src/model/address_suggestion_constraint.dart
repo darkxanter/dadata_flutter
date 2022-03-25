@@ -1,60 +1,61 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'address_suggestion_constraint.g.dart';
 
 ///AddressSuggestionConstraint used to limit search results according to
 ///Dadata online API documentation https://confluence.hflabs.ru/pages/viewpage.action?pageId=204669108.
-@JsonSerializable(explicitToJson: true, nullable: true)
+@JsonSerializable(explicitToJson: true)
 class AddressSuggestionConstraint {
   @JsonKey(name: "region")
-  String region;
+  String? region;
 
   @JsonKey(name: "city")
-  String city;
+  String? city;
 
   @JsonKey(name: "street_type_full")
-  String streetTypeFull;
+  String? streetTypeFull;
 
   @JsonKey(name: "settlement_type_full")
-  String settlementTypeFull;
+  String? settlementTypeFull;
 
   @JsonKey(name: "city_district_type_full")
-  String cityDistrictTypeFull;
+  String? cityDistrictTypeFull;
 
   @JsonKey(name: "city_type_full")
-  String cityTypeFull;
+  String? cityTypeFull;
 
   @JsonKey(name: "area_type_full")
-  String areaTypeFull;
+  String? areaTypeFull;
 
   @JsonKey(name: "region_type_full")
-  String regionTypeFull;
+  String? regionTypeFull;
 
   @JsonKey(name: "country")
-  String country;
+  String? country;
 
   @JsonKey(name: "country_iso_code")
-  String countryISOCode;
+  String? countryISOCode;
 
   @JsonKey(name: "region_iso_code")
-  String regionISOCode;
+  String? regionISOCode;
 
   @JsonKey(name: "kladr_id")
-  String kladrId;
+  String? kladrId;
 
   @JsonKey(name: "region_fias_id")
-  String regionFIASId;
+  String? regionFIASId;
 
   @JsonKey(name: "area_fias_id")
-  String areaFIASId;
+  String? areaFIASId;
 
   @JsonKey(name: "city_fias_id")
-  String cityFIASId;
+  String? cityFIASId;
 
   @JsonKey(name: "settlement_fias_id")
-  String settlementFIASId;
+  String? settlementFIASId;
 
   @JsonKey(name: "street_fias_id")
-  String streetFIASId;
+  String? streetFIASId;
 
   ///AddressSuggestionConstraint used to limit search results according to
   ///Dadata online API documentation https://confluence.hflabs.ru/pages/viewpage.action?pageId=204669108.

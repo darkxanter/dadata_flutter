@@ -1,11 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
+
 part 'address_suggestion_priority.g.dart';
 
 ///Helps prioritize specified region in search results by KLADR ID.
-@JsonSerializable(explicitToJson: true, nullable: true)
+@JsonSerializable(explicitToJson: true)
 class AddressSuggestionPriority {
   @JsonKey(name: "kladr_id")
-  String kladrId;
+  String? kladrId;
 
   /// KLADR ID [kladrId] should be provided to constructor.
   /// It is the only field in this class.

@@ -1,3 +1,8 @@
+## [0.2.0] - 20.12.2020.
+
+* Null safety
+* Update dependencies
+
 ## [0.1.2] - 20.12.2020.
 
 * Improved documentation comments only.
