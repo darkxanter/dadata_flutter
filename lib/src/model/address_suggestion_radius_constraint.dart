@@ -17,7 +17,6 @@ class AddressSuggestionRadiusConstraint {
   @JsonKey(name: "radius_meters")
   int get radiusMeters => _radiusMeters!;
 
-  @JsonKey(name: "radius_meters")
   set radiusMeters(int value) {
     if (value < 0) {
       _radiusMeters = 0;
