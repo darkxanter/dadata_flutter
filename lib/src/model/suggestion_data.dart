@@ -1,3 +1,4 @@
+import 'package:dadata/src/model/metro_station.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'suggestion_data.g.dart';
@@ -211,14 +212,17 @@ class SuggestionData {
   @JsonKey(name: 'tax_office_legal')
   String? taxOfficeLegal;
 
+  /// Timezone (UTC+3)
   @JsonKey(name: 'timezone')
   String? timezone;
 
+  /// Latitude
   @JsonKey(name: 'geo_lat')
-  dynamic geoLat;
+  String? geoLat;
 
+  /// Longitude
   @JsonKey(name: 'geo_lon')
-  dynamic geoLon;
+  String? geoLon;
 
   @JsonKey(name: 'beltway_hit')
   String? beltwayHit;
@@ -226,21 +230,45 @@ class SuggestionData {
   @JsonKey(name: 'beltway_distance')
   String? beltwayDistance;
 
-  // Actual Metro to be implemented.
+  /// List of nearest metro stations (up to three)
   @JsonKey(name: 'metro')
-  List<dynamic>? metro;
+  List<MetroStation>? metro;
 
+  /// Address quality code
+  /// 0 - Address recognized confidently
+  /// 1 - Remained "extra" parts. Either there is not enough data in the source address for a confident parsing.
+  /// 2 - The address is empty or "garbage"
+  /// 3 - There are alternatives
   @JsonKey(name: 'qc')
-  dynamic qc;
+  String? qc;
 
+  /// Coordinate accuracy code
+  /// 0 - Precise coordinates
+  /// 1 - Nearest house
+  /// 2 - Street
+  /// 3 - Settlement
+  /// 4 - City
+  /// 5 - Coordinates not defined
   @JsonKey(name: 'qc_geo')
-  dynamic qcGeo;
+  String? qcGeo;
 
+  /// Suitable for mailing
+  /// 0 - Suitable for mailing
+  /// 10 - House not in FIAS
+  /// 5 - There is no apartment. Suitable for legal entities or private properties
+  /// 8 - To the post office - PO box or poste restante address. Suitable for letters, but not for courier delivery.
+  /// 9 - First check if DaData parsed the source address correctly
+  /// 1 - No region
+  /// 2 - No city
+  /// 3 - No street
+  /// 4 - No house
+  /// 6 - Address incomplete
+  /// 7 - Foreign address
   @JsonKey(name: 'qc_complete')
-  dynamic qcComplete;
+  String? qcComplete;
 
   @JsonKey(name: 'qc_house')
-  dynamic qcHouse;
+  String? qcHouse;
 
   @JsonKey(name: 'history_values')
   List<String>? historyValues;

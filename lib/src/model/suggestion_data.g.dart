@@ -78,15 +78,17 @@ SuggestionData _$SuggestionDataFromJson(Map<String, dynamic> json) =>
       ..taxOffice = json['tax_office'] as String?
       ..taxOfficeLegal = json['tax_office_legal'] as String?
       ..timezone = json['timezone'] as String?
-      ..geoLat = json['geo_lat']
-      ..geoLon = json['geo_lon']
+      ..geoLat = json['geo_lat'] as String?
+      ..geoLon = json['geo_lon'] as String?
       ..beltwayHit = json['beltway_hit'] as String?
       ..beltwayDistance = json['beltway_distance'] as String?
-      ..metro = json['metro'] as List<dynamic>?
-      ..qc = json['qc']
-      ..qcGeo = json['qc_geo']
-      ..qcComplete = json['qc_complete']
-      ..qcHouse = json['qc_house']
+      ..metro = (json['metro'] as List<dynamic>?)
+          ?.map((e) => MetroStation.fromJson(e as Map<String, dynamic>))
+          .toList()
+      ..qc = json['qc'] as String?
+      ..qcGeo = json['qc_geo'] as String?
+      ..qcComplete = json['qc_complete'] as String?
+      ..qcHouse = json['qc_house'] as String?
       ..historyValues = (json['history_values'] as List<dynamic>?)
           ?.map((e) => e as String)
           .toList()
@@ -169,7 +171,7 @@ Map<String, dynamic> _$SuggestionDataToJson(SuggestionData instance) =>
       'geo_lon': instance.geoLon,
       'beltway_hit': instance.beltwayHit,
       'beltway_distance': instance.beltwayDistance,
-      'metro': instance.metro,
+      'metro': instance.metro?.map((e) => e.toJson()).toList(),
       'qc': instance.qc,
       'qc_geo': instance.qcGeo,
       'qc_complete': instance.qcComplete,
