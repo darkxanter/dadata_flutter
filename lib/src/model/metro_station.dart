@@ -9,12 +9,18 @@ part 'metro_station.g.dart';
 class MetroStation {
   /// Station name
   final String name;
+
   /// Line name
   final String line;
+
   /// Distance to the station in kilometers
   final double distance;
 
-  MetroStation({required this.name, required this.line, required this.distance});
+  MetroStation({
+    required this.name,
+    required this.line,
+    required this.distance,
+  });
 
   factory MetroStation.fromJson(Map<String, dynamic> json) =>
       _$MetroStationFromJson(json);
