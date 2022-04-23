@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'metro_station.g.dart';
 
 /// Represents
 @JsonSerializable(explicitToJson: true)
-@immutable
 class MetroStation {
   /// Station name
   final String name;
