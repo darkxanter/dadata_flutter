@@ -2,6 +2,12 @@ name: ci
 
 on:
   push:
+    paths:
+      - 'lib/**'
+      - 'example/**'
+      - 'test/**'
+      - pubspec.yaml
+      - pubspec.lock
     branches:
       - master
   pull_request:
