@@ -77,8 +77,8 @@ class AddressSuggestionRequest {
     this.locationsPriority,
     LevelBoundry? upperBoundary,
     LevelBoundry? lowerBoundary,
-  })  : this._upperBoundary = upperBoundary,
-        this._lowerBoundary = lowerBoundary;
+  })  : _upperBoundary = upperBoundary,
+        _lowerBoundary = lowerBoundary;
 
   factory AddressSuggestionRequest.fromJson(Map<String, dynamic> json) =>
       _$AddressSuggestionRequestFromJson(json);

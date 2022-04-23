@@ -27,8 +27,13 @@ part 'src/dadata_client.dart';
 class DadataSuggestions {
   final DadataClient _client;
 
-  factory DadataSuggestions(String token) {
-    return DadataSuggestions._(DadataClient(token));
+  factory DadataSuggestions({String? token, Client? client}) {
+    return DadataSuggestions._(
+      DadataClient(
+        token: token,
+        client: client,
+      ),
+    );
   }
 
   DadataSuggestions._(this._client);

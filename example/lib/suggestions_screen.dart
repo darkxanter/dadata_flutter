@@ -92,7 +92,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
   @override
   void initState() {
     super.initState();
-    _suggestions = DadataSuggestions(widget.token);
+    _suggestions = DadataSuggestions(token: widget.token);
   }
 
   @override
