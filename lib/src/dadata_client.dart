@@ -4,6 +4,7 @@ part of dadata;
 class DadataClient {
   final Client _client;
   final String? _token;
+  final Endpoint _endpoint;
 
   Map<String, String> get _headers {
     return {
@@ -16,19 +17,22 @@ class DadataClient {
   DadataClient({
     String? token,
     Client? client,
+    String? endpoint,
   })  : _token = token,
-        _client = client ?? Client();
+        _client = client ?? Client(),
+        _endpoint = Endpoint(endpoint)
+  ;
 
   /// Calls suggestions API with [AddressSuggestionRequest] provided.
   Future<AddressResponse?> suggest(AddressSuggestionRequest query) async {
     final q = query.toJson();
-    return _performRequest(q, Constants.addressEndpoint);
+    return _performRequest(q, _endpoint.suggestAddress);
   }
 
   /// Calls reverse geocoding API with [RevgeocodeSuggestionRequest] provided.
   Future<AddressResponse?> revGeocode(RevgeocodeSuggestionRequest query) async {
     final q = query.toJson();
-    return _performRequest(q, Constants.revGeocodeEndpoint);
+    return _performRequest(q, _endpoint.geolocationAddress);
   }
 
   Future<AddressResponse?> _performRequest(

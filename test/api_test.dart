@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:dadata/src/constants.dart';
+import 'package:dadata/src/endpoint.dart';
 import 'package:mockito/annotations.dart';
 import 'package:test/test.dart';
 import 'package:dadata/dadata.dart';
@@ -13,15 +13,16 @@ import 'api_test.mocks.dart';
 @GenerateMocks([http.Client])
 void main() {
   final mockClient = MockClient();
+  final endpoint = Endpoint();
 
   stubRequest(
     mockClient,
-    Constants.addressEndpoint,
+    endpoint.suggestAddress,
     Stubs.suggestAddress,
   );
   stubRequest(
     mockClient,
-    Constants.revGeocodeEndpoint,
+    endpoint.geolocationAddress,
     Stubs.geolocateAddress,
   );
   group('stub api test', () {

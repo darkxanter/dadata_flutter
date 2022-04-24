@@ -2,9 +2,9 @@ library dadata;
 
 import 'dart:convert';
 
+import 'package:dadata/src/endpoint.dart';
 import 'package:http/http.dart';
 
-import 'src/constants.dart';
 import 'src/model/address_response.dart';
 import 'src/model/address_suggestion_request.dart';
 import 'src/model/revgeocode_suggestion_request.dart';
@@ -27,7 +27,11 @@ part 'src/dadata_client.dart';
 class DadataSuggestions {
   final DadataClient _client;
 
-  factory DadataSuggestions({String? token, Client? client}) {
+  factory DadataSuggestions({
+    String? token,
+    Client? client,
+    String? endpoint,
+  }) {
     return DadataSuggestions._(
       DadataClient(
         token: token,
