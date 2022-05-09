@@ -12,7 +12,7 @@ class SuggestionsScreen extends StatefulWidget {
 }
 
 class _SuggestionsScreenState extends State<SuggestionsScreen> {
-  late final DadataSuggestions _suggestions;
+  late final DadataClient _dadataClient;
   final _textEditingController = TextEditingController();
 
   @override
@@ -60,7 +60,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
       print("found lat $lat lon $lon");
       if (lat != null && lon != null) {
         try {
-          final resp = await _suggestions.revGeocode(
+          final resp = await _dadataClient.revGeocode(
             RevgeocodeSuggestionRequest(
               latitude: lat,
               longitude: lon,
@@ -75,7 +75,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
       }
     }
     try {
-      final resp = await _suggestions.suggest(
+      final resp = await _dadataClient.suggest(
         AddressSuggestionRequest(
           text,
         ),
@@ -92,7 +92,7 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
   @override
   void initState() {
     super.initState();
-    _suggestions = DadataSuggestions(token: widget.token);
+    _dadataClient = DadataClient(token: widget.token);
   }
 
   @override

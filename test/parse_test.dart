@@ -1,9 +1,7 @@
 import 'dart:convert';
 
-import 'package:dadata/src/model/common/dadata_response.dart';
-import 'package:test/test.dart';
-
 import 'package:dadata/dadata.dart';
+import 'package:test/test.dart';
 
 import 'stubs.dart';
 

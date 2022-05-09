@@ -28,7 +28,7 @@ class DadataClient {
         _endpoint = Endpoint(endpoint);
 
   /// Calls [address suggestions API](https://dadata.ru/api/suggest/address/) with [AddressSuggestionRequest] provided.
-  Future<DadataResponse<AddressSuggestionData>?> suggest(
+  Future<AddressResponse?> suggest(
     AddressSuggestionRequest query,
   ) async {
     final q = query.toJson();
@@ -40,7 +40,7 @@ class DadataClient {
   }
 
   /// Calls [reverse geocoding API](https://dadata.ru/api/geolocate/) with [RevgeocodeSuggestionRequest] provided.
-  Future<DadataResponse<AddressSuggestionData>?> revGeocode(
+  Future<AddressResponse?> revGeocode(
     RevgeocodeSuggestionRequest query,
   ) async {
     final q = query.toJson();
