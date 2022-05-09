@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'address_suggestion_priority.g.dart';
 
-///Helps prioritize specified region in search results by KLADR ID.
+/// Helps prioritize specified region in search results by KLADR ID.
 @JsonSerializable(explicitToJson: true)
 class AddressSuggestionPriority {
   @JsonKey(name: "kladr_id")

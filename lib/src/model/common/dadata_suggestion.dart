@@ -2,6 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'dadata_suggestion.g.dart';
 
+/// Represents an object used to hold API one suggestion from response
 @JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
 class DadataSuggestion<T> {
   @JsonKey(name: 'value')

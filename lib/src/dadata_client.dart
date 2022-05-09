@@ -1,6 +1,11 @@
-part of dadata;
+import 'dart:convert';
 
-/// Provides actual API calling.
+import 'package:http/http.dart';
+
+import 'endpoint.dart';
+import 'model/models.dart';
+
+/// Dadata API client
 class DadataClient {
   final Client _client;
   final String? _token;
@@ -22,7 +27,7 @@ class DadataClient {
         _client = client ?? Client(),
         _endpoint = Endpoint(endpoint);
 
-  /// Calls suggestions API with [AddressSuggestionRequest] provided.
+  /// Calls [address suggestions API](https://dadata.ru/api/suggest/address/) with [AddressSuggestionRequest] provided.
   Future<DadataResponse<AddressSuggestionData>?> suggest(
     AddressSuggestionRequest query,
   ) async {
@@ -34,7 +39,7 @@ class DadataClient {
     );
   }
 
-  /// Calls reverse geocoding API with [RevgeocodeSuggestionRequest] provided.
+  /// Calls [reverse geocoding API](https://dadata.ru/api/geolocate/) with [RevgeocodeSuggestionRequest] provided.
   Future<DadataResponse<AddressSuggestionData>?> revGeocode(
     RevgeocodeSuggestionRequest query,
   ) async {

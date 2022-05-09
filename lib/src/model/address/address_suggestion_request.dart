@@ -7,7 +7,7 @@ import 'level_boundry.dart';
 
 part 'address_suggestion_request.g.dart';
 
-///Used to call address suggestions API.
+/// Used to call address suggestions API.
 @JsonSerializable(explicitToJson: true)
 class AddressSuggestionRequest {
   @JsonKey(name: 'query', required: true)

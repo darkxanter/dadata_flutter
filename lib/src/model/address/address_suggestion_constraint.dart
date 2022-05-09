@@ -2,8 +2,8 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'address_suggestion_constraint.g.dart';
 
-///AddressSuggestionConstraint used to limit search results according to
-///Dadata online API documentation https://confluence.hflabs.ru/pages/viewpage.action?pageId=204669108.
+/// AddressSuggestionConstraint used to limit search results according to
+/// Dadata online API documentation https://confluence.hflabs.ru/pages/viewpage.action?pageId=204669108.
 @JsonSerializable(explicitToJson: true)
 class AddressSuggestionConstraint {
   @JsonKey(name: "region")

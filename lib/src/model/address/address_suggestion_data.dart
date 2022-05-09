@@ -3,6 +3,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'address_suggestion_data.g.dart';
 
+/// Represents an object used to hold address data
 @JsonSerializable(explicitToJson: true)
 class AddressSuggestionData {
   @JsonKey(name: 'postal_code')

@@ -2,7 +2,7 @@ import 'package:json_annotation/json_annotation.dart';
 
 part 'metro_station.g.dart';
 
-/// Represents
+/// Metro station information
 @JsonSerializable(explicitToJson: true)
 class MetroStation {
   /// Station name
