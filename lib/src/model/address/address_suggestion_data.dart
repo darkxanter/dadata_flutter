@@ -1,10 +1,10 @@
-import 'package:dadata/src/model/metro_station.dart';
+import 'package:dadata/src/model/address/metro_station.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-part 'suggestion_data.g.dart';
+part 'address_suggestion_data.g.dart';
 
 @JsonSerializable(explicitToJson: true)
-class SuggestionData {
+class AddressSuggestionData {
   @JsonKey(name: 'postal_code')
   String? postalCode;
 
@@ -279,10 +279,10 @@ class SuggestionData {
   @JsonKey(name: 'source')
   String? source;
 
-  SuggestionData();
+  AddressSuggestionData();
 
-  factory SuggestionData.fromJson(Map<String, dynamic> json) =>
-      _$SuggestionDataFromJson(json);
+  factory AddressSuggestionData.fromJson(Map<String, dynamic> json) =>
+      _$AddressSuggestionDataFromJson(json);
 
-  Map<String, dynamic> toJson() => _$SuggestionDataToJson(this);
+  Map<String, dynamic> toJson() => _$AddressSuggestionDataToJson(this);
 }

@@ -23,20 +23,33 @@ class DadataClient {
         _endpoint = Endpoint(endpoint);
 
   /// Calls suggestions API with [AddressSuggestionRequest] provided.
-  Future<AddressResponse?> suggest(AddressSuggestionRequest query) async {
+  Future<DadataResponse<AddressSuggestionData>?> suggest(
+    AddressSuggestionRequest query,
+  ) async {
     final q = query.toJson();
-    return _performRequest(q, _endpoint.suggestAddress);
+    return _performRequest(
+      q,
+      _endpoint.suggestAddress,
+      AddressSuggestionData.fromJson,
+    );
   }
 
   /// Calls reverse geocoding API with [RevgeocodeSuggestionRequest] provided.
-  Future<AddressResponse?> revGeocode(RevgeocodeSuggestionRequest query) async {
+  Future<DadataResponse<AddressSuggestionData>?> revGeocode(
+    RevgeocodeSuggestionRequest query,
+  ) async {
     final q = query.toJson();
-    return _performRequest(q, _endpoint.geolocationAddress);
+    return _performRequest(
+      q,
+      _endpoint.geolocationAddress,
+      AddressSuggestionData.fromJson,
+    );
   }
 
-  Future<AddressResponse?> _performRequest(
+  Future<DadataResponse<T>?> _performRequest<T>(
     dynamic query,
     String endpoint,
+    T Function(Map<String, dynamic> json) fromJsonT,
   ) async {
     final resp = await _client.post(
       Uri.parse(endpoint),
@@ -44,7 +57,10 @@ class DadataClient {
       body: jsonEncode(query),
     );
     if (resp.body.isNotEmpty) {
-      return AddressResponse.fromJson(jsonDecode(resp.body));
+      return DadataResponse.fromJson(
+        jsonDecode(resp.body),
+        (value) => fromJsonT(value as Map<String, dynamic>),
+      );
     }
     return null;
   }

@@ -1,13 +1,14 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'suggestion_data.dart';
+part of 'address_suggestion_data.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-SuggestionData _$SuggestionDataFromJson(Map<String, dynamic> json) =>
-    SuggestionData()
+AddressSuggestionData _$AddressSuggestionDataFromJson(
+        Map<String, dynamic> json) =>
+    AddressSuggestionData()
       ..postalCode = json['postal_code'] as String?
       ..country = json['country'] as String?
       ..countryIsoCode = json['country_iso_code'] as String?
@@ -95,7 +96,8 @@ SuggestionData _$SuggestionDataFromJson(Map<String, dynamic> json) =>
       ..unparsedParts = json['unparsed_parts'] as String?
       ..source = json['source'] as String?;
 
-Map<String, dynamic> _$SuggestionDataToJson(SuggestionData instance) =>
+Map<String, dynamic> _$AddressSuggestionDataToJson(
+        AddressSuggestionData instance) =>
     <String, dynamic>{
       'postal_code': instance.postalCode,
       'country': instance.country,

@@ -3,21 +3,20 @@ library dadata;
 import 'dart:convert';
 
 import 'package:dadata/src/endpoint.dart';
+import 'package:dadata/src/model/address/address_suggestion_data.dart';
+import 'package:dadata/src/model/common/dadata_response.dart';
 import 'package:http/http.dart';
 
-import 'src/model/address_response.dart';
-import 'src/model/address_suggestion_request.dart';
-import 'src/model/revgeocode_suggestion_request.dart';
+import 'src/model/address/address_suggestion_request.dart';
+import 'src/model/address/revgeocode_suggestion_request.dart';
 
-export 'src/model/address_response.dart';
-export 'src/model/address_suggestion.dart';
-export 'src/model/address_suggestion_constraint.dart';
-export 'src/model/address_suggestion_priority.dart';
-export 'src/model/address_suggestion_radius_constraint.dart';
-export 'src/model/address_suggestion_request.dart';
-export 'src/model/level_boundry.dart';
-export 'src/model/revgeocode_suggestion_request.dart';
-export 'src/model/suggestion_data.dart';
+export 'src/model/address/address_suggestion_constraint.dart';
+export 'src/model/address/address_suggestion_priority.dart';
+export 'src/model/address/address_suggestion_radius_constraint.dart';
+export 'src/model/address/address_suggestion_request.dart';
+export 'src/model/address/level_boundry.dart';
+export 'src/model/address/revgeocode_suggestion_request.dart';
+export 'src/model/address/address_suggestion_data.dart';
 
 part 'src/dadata_client.dart';
 
@@ -46,9 +45,10 @@ class DadataSuggestions {
   /// an optional [completion] handler.
   /// Suggestions would be returned as [Future<AddressResponse>]
   /// or passed to completion block along with [Error] or [Exception] as [dynamic] if any.
-  Future<AddressResponse?> suggest(
+  Future<DadataResponse<AddressSuggestionData>?> suggest(
     AddressSuggestionRequest request, {
-    void Function(AddressResponse? resp, dynamic e)? completion,
+    void Function(DadataResponse<AddressSuggestionData>? resp, dynamic e)?
+        completion,
   }) async {
     try {
       final resp = await _client.suggest(request);
@@ -68,9 +68,10 @@ class DadataSuggestions {
   /// an optional [completion] handler.
   /// Suggestions would be returned as [Future<AddressResponse>]
   /// or passed to completion block along with [Error] or [Exception] as [dynamic] if any.
-  Future<AddressResponse?> revGeocode(
+  Future<DadataResponse<AddressSuggestionData>?> revGeocode(
     RevgeocodeSuggestionRequest request, {
-    void Function(AddressResponse? resp, dynamic e)? completion,
+    void Function(DadataResponse<AddressSuggestionData>? resp, dynamic e)?
+        completion,
   }) async {
     try {
       final resp = await _client.revGeocode(request);
