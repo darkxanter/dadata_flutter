@@ -5,9 +5,13 @@ part 'dadata_suggestion.g.dart';
 /// Represents an object used to hold API one suggestion from response
 @JsonSerializable(explicitToJson: true, genericArgumentFactories: true)
 class DadataSuggestion<T> {
+  /// Single line value
   @JsonKey(name: 'value')
   String? value;
 
+  /// Single line value
+  ///
+  /// The value may contain extended information depending on the suggestion type
   @JsonKey(name: 'unrestricted_value')
   String? unrestrictedValue;
 

@@ -1,3 +1,4 @@
+import 'package:dadata/src/model/common/suggestion_request.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'address_suggestion_constraint.dart';
@@ -9,12 +10,12 @@ part 'address_suggestion_request.g.dart';
 
 /// Used to call address suggestions API.
 @JsonSerializable(explicitToJson: true)
-class AddressSuggestionRequest {
+class AddressSuggestionRequest implements SuggestionRequest {
   @JsonKey(name: 'query', required: true)
-  String? query;
+  String query;
 
   @JsonKey(name: 'count')
-  int? count = 10;
+  int? count;
 
   @JsonKey(name: 'language')
   String? language = 'ru';
@@ -64,10 +65,10 @@ class AddressSuggestionRequest {
     _lowerBoundary = null;
   }
 
-  ///AddressSuggestionRequest represents an serializable object
-  ///used to perform suggestion queries.
-  ///[query] is required field.
-  ///[count] defaults to `10` and [language] defaults to `ru`.
+  /// AddressSuggestionRequest represents an serializable object
+  /// used to perform suggestion queries.
+  /// [query] is required field.
+  /// [count] defaults to `10` and [language] defaults to `ru`.
   AddressSuggestionRequest(
     this.query, {
     this.count,

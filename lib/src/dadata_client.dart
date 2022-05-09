@@ -28,26 +28,35 @@ class DadataClient {
         _endpoint = Endpoint(endpoint);
 
   /// Calls [address suggestions API](https://dadata.ru/api/suggest/address/) with [AddressSuggestionRequest] provided.
-  Future<AddressResponse?> suggest(
+  Future<AddressResponse?> suggestAddress(
     AddressSuggestionRequest query,
   ) async {
-    final q = query.toJson();
     return _performRequest(
-      q,
+      query.toJson(),
       _endpoint.suggestAddress,
       AddressSuggestionData.fromJson,
     );
   }
 
   /// Calls [reverse geocoding API](https://dadata.ru/api/geolocate/) with [RevgeocodeSuggestionRequest] provided.
-  Future<AddressResponse?> revGeocode(
+  Future<AddressResponse?> geolocateAddress(
     RevgeocodeSuggestionRequest query,
   ) async {
-    final q = query.toJson();
     return _performRequest(
-      q,
-      _endpoint.geolocationAddress,
+      query.toJson(),
+      _endpoint.geolocateAddress,
       AddressSuggestionData.fromJson,
+    );
+  }
+
+  /// Calls [passport issued by suggestions API](https://dadata.ru/api/suggest/fms_unit/) with [PassportIssuedBySuggestionRequest] provided.
+  Future<PassportIssuedByResponse?> passportIssuedBy(
+    PassportIssuedBySuggestionRequest query,
+  ) async {
+    return _performRequest(
+      query.toJson(),
+      _endpoint.passportIssuedBy,
+      PassportIssuedByData.fromJson,
     );
   }
 

@@ -21,6 +21,14 @@ void main() {
     test('geolocate/address', () {
       addressFromJson(Stubs.geolocateAddressEmpty);
     });
+    test('suggest/fms_unit', () {
+      DadataResponse<PassportIssuedByData>.fromJson(
+        jsonDecode(Stubs.passportIssuedByEmpty),
+        (value) => PassportIssuedByData.fromJson(
+          value as Map<String, dynamic>,
+        ),
+      );
+    });
   });
 
   group("parse example responses", () {
@@ -29,6 +37,14 @@ void main() {
     });
     test('geolocate/address', () {
       addressFromJson(Stubs.geolocateAddress);
+    });
+    test('suggest/fms_unit', () {
+      DadataResponse<PassportIssuedByData>.fromJson(
+        jsonDecode(Stubs.passportIssuedBy),
+        (value) => PassportIssuedByData.fromJson(
+          value as Map<String, dynamic>,
+        ),
+      );
     });
   });
 }

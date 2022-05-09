@@ -16,6 +16,13 @@ abstract class Stubs {
       {"value": "Empty Response", "unrestricted_value": "Empty Response", "data": { } }
     ]
   }''';
+
+  static String get passportIssuedBy => _readJson('passport_issued_by.json');
+  static const passportIssuedByEmpty = '''{ 
+    "suggestions": [
+      {"value": "Empty Response", "unrestricted_value": "Empty Response", "data": { } }
+    ]
+  }''';
 }
 
 String _readJson(String filename) {

@@ -22,8 +22,13 @@ void main() {
   );
   stubRequest(
     mockClient,
-    endpoint.geolocationAddress,
+    endpoint.geolocateAddress,
     Stubs.geolocateAddress,
+  );
+  stubRequest(
+    mockClient,
+    endpoint.passportIssuedBy,
+    Stubs.passportIssuedBy,
   );
   group('stub api test', () {
     testCases(mockClient);
@@ -43,15 +48,30 @@ void testCases(http.Client client, {String? token}) {
   final dadataClient = DadataClient(client: client, token: token);
 
   test('suggest/address', () async {
-    final response = await dadataClient.suggest(
+    final response = await dadataClient.suggestAddress(
       AddressSuggestionRequest('Москва хабар'),
     );
     expect(response, isNotNull);
     expect(response!.suggestions, isNotEmpty);
   });
   test('geolocate/address', () async {
-    final response = await dadataClient.revGeocode(
+    final response = await dadataClient.geolocateAddress(
       RevgeocodeSuggestionRequest(latitude: 55.878, longitude: 37.653),
+    );
+    expect(response, isNotNull);
+    expect(response!.suggestions, isNotEmpty);
+  });
+  test('suggest/fms_unit by code', () async {
+    final response = await dadataClient.passportIssuedBy(
+      PassportIssuedBySuggestionRequest('770-103'),
+    );
+    expect(response, isNotNull);
+    expect(response!.suggestions, isNotEmpty);
+  });
+
+  test('suggest/fms_unit by name', () async {
+    final response = await dadataClient.passportIssuedBy(
+      PassportIssuedBySuggestionRequest('ГУ МВД РОССИИ ПО Г. МОСКВЕ'),
     );
     expect(response, isNotNull);
     expect(response!.suggestions, isNotEmpty);

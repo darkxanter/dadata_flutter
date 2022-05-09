@@ -13,7 +13,7 @@ AddressSuggestionRequest _$AddressSuggestionRequestFromJson(
     requiredKeys: const ['query'],
   );
   return AddressSuggestionRequest(
-    json['query'] as String?,
+    json['query'] as String,
     count: json['count'] as int?,
     language: json['language'] as String?,
     constraints: (json['locations'] as List<dynamic>?)

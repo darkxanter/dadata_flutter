@@ -9,3 +9,4 @@ Yet another [DaData](https://dadata.ru/) Suggestions library.
 Implemented:
 - [Address suggestions](https://dadata.ru/api/suggest/address/)
 - [Reverse geocoding](https://dadata.ru/api/geolocate/)
+- [Passport Issued By](https://dadata.ru/api/suggest/fms_unit/)

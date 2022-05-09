@@ -1,3 +1,14 @@
+## [0.3.0] - 09.05.2022
+
+### Breaking changes:
+- Removed the `DadataSuggestions` class in favor to using the `DadataClient` class directly 
+- Renamed method `suggest` to `suggestAddress`
+- Renamed method `revGeocode` to `geolocateAddress`
+
+### New:
+* Added passport issued by suggestions
+* Added parameter for custom endpoint
+
 ## [0.2.1] - 07.04.2022
 
 * Added metro station entity

@@ -1,6 +1,7 @@
 import 'package:dadata/dadata.dart';
+import 'package:example/address.dart';
+import 'package:example/passport.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_typeahead/flutter_typeahead.dart';
 
 class SuggestionsScreen extends StatefulWidget {
   final String token;
@@ -13,81 +14,7 @@ class SuggestionsScreen extends StatefulWidget {
 
 class _SuggestionsScreenState extends State<SuggestionsScreen> {
   late final DadataClient _dadataClient;
-  final _textEditingController = TextEditingController();
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Try query'),
-      ),
-      body: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.all(24),
-            child: TypeAheadField<AddressSuggestion>(
-              textFieldConfiguration: TextFieldConfiguration(
-                controller: _textEditingController,
-              ),
-              debounceDuration: Duration(milliseconds: 600),
-              suggestionsCallback: _startSuggesting,
-              itemBuilder: (context, suggestion) {
-                return Container(
-                  child: Padding(
-                    padding: EdgeInsets.all(12),
-                    child: Text(suggestion.unrestrictedValue ?? ''),
-                  ),
-                );
-              },
-              onSuggestionSelected: (suggestion) {
-                final value = suggestion.value;
-                if (value != null) {
-                  _textEditingController.text = value;
-                }
-              },
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Future<List<AddressSuggestion>> _startSuggesting(String text) async {
-    final tpts = text.split(',');
-    if (tpts.length == 2) {
-      final lat = double.tryParse(tpts[0]);
-      final lon = double.tryParse(tpts[1]);
-      print("found lat $lat lon $lon");
-      if (lat != null && lon != null) {
-        try {
-          final resp = await _dadataClient.revGeocode(
-            RevgeocodeSuggestionRequest(
-              latitude: lat,
-              longitude: lon,
-            ),
-          );
-          if (resp != null && resp.suggestions.isNotEmpty) {
-            return resp.suggestions;
-          }
-        } catch (e) {
-          print("Caught error in revgeocode $e");
-        }
-      }
-    }
-    try {
-      final resp = await _dadataClient.suggest(
-        AddressSuggestionRequest(
-          text,
-        ),
-      );
-      if (resp != null && resp.suggestions.isNotEmpty) {
-        return resp.suggestions;
-      }
-    } catch (e) {
-      print("Caught error in suggestion query $e");
-    }
-    return [];
-  }
+  var _suggestionType = SuggestionType.address;
 
   @override
   void initState() {
@@ -96,7 +23,40 @@ class _SuggestionsScreenState extends State<SuggestionsScreen> {
   }
 
   @override
-  void dispose() {
-    super.dispose();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Try query'),
+      ),
+      body: Column(children: [
+        ...SuggestionType.values.map(
+          (type) => RadioListTile<SuggestionType>(
+            title: Text('$type'),
+            value: type,
+            groupValue: _suggestionType,
+            onChanged: (value) {
+              setState(() {
+                if (value != null) _suggestionType = value;
+              });
+            },
+          ),
+        ),
+        _suggestionView(),
+      ]),
+    );
   }
+
+  Widget _suggestionView() {
+    switch (_suggestionType) {
+      case SuggestionType.address:
+        return AddressScreen(dadataClient: _dadataClient);
+      case SuggestionType.passport:
+        return PassportScreen(dadataClient: _dadataClient);
+    }
+  }
+}
+
+enum SuggestionType {
+  address,
+  passport,
 }

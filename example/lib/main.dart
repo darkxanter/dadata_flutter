@@ -33,11 +33,11 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(24),
-          child: TextField(
+          child: TextFormField(
             decoration: InputDecoration(
               hintText: "Paste Dadata API token and press enter",
             ),
-            onSubmitted: (string) {
+            onFieldSubmitted: (string) {
               Navigator.of(context).push(
                 PageRouteBuilder(
                   opaque: false,
