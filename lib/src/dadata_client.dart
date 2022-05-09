@@ -20,8 +20,7 @@ class DadataClient {
     String? endpoint,
   })  : _token = token,
         _client = client ?? Client(),
-        _endpoint = Endpoint(endpoint)
-  ;
+        _endpoint = Endpoint(endpoint);
 
   /// Calls suggestions API with [AddressSuggestionRequest] provided.
   Future<AddressResponse?> suggest(AddressSuggestionRequest query) async {
