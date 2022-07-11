@@ -1,3 +1,7 @@
+## [0.3.1] - 11.07.2022
+* Update dependencies
+* Min dart sdk version 2.17
+
 ## [0.3.0] - 09.05.2022
 
 ### Breaking changes:
