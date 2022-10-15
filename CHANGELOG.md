@@ -1,3 +1,6 @@
+## [0.3.3] - 15.10.2022
+* Update dependencies
+
 ## [0.3.2] - 28.09.2022
 * Update dependencies
 
